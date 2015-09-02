@@ -4,7 +4,7 @@ public class Libro {
     
     private String nombre,autor,pubYear,codigo,area;
     private int cant; boolean flag;
-    Scanner teclado=new Scanner(System.in);
+    public Scanner teclado=new Scanner(System.in);
     public String getNombre() {
         return nombre;
     }
@@ -137,7 +137,7 @@ public class Libro {
             }
             else System.out.println("Regresando al menu...");
     }
-    public void buscarLibro(String libro){
+    public Libro buscarLibro(String libro){
         if (nombre.compareTo(libro)==0){
             System.out.println("Mostrando coincidencias...");
             System.out.println(nombre);
@@ -145,9 +145,10 @@ public class Libro {
             System.out.println(autor);
             System.out.println(pubYear);
             System.out.println(cant);
+            return this;
         }
         else
             System.out.println("El libro no esta en la coleccion");
+        return null;
     }
-    
 }
