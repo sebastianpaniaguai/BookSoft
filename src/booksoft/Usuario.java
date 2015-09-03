@@ -1,8 +1,9 @@
 package booksoft;
 public class Usuario extends Libro {
-    private int cantPres;
+    private int cantPres=0;
     private String cc;
     private Libro[] prestado=new Libro[5];
+    private boolean out;
 
     public int getCantPres() {
         return cantPres;
@@ -23,28 +24,37 @@ public class Usuario extends Libro {
         this.prestado = prestado;
     }
     
-    public void prestarLibro(){
-        System.out.println("Ingrese el nombre del libro que desea prestar");
-        String name=teclado.next();
-        prestado[cantPres+1]=new Libro();
-        prestado[cantPres+1]=buscarLibro(name);
-        if (prestado[cantPres+1]!=null){
-            cantPres+=1;
-            System.out.println("El libro fue agregado a su lista de prestamos.");
-            System.out.println("Actualmente tiene "+cantPres+" libros prestados");
-        }
+    public void prestarLibro(Usuario Libro){
         
+            cantPres+=1;
+            this.setCant(this.getCant()-1);
+            BookSoft.libPrestados+=1;
+            System.out.println("El libro fue agregado a su lista de prestamos.");
+            System.out.println("Actualmente tiene "+BookSoft.libPrestados+" libros prestados");
+            out=true;
     }
     public void devolverLibro(){
-        System.out.println("Ingrese el nombre del libro que desea devolver");
-        String name=teclado.next();
-        for(int i=0;i<=cantPres;i++){
-            if (buscarLibro(name).getNombre().compareTo(prestado[i].getNombre())==0){
-                prestado[i].eliminarLibro();
-                cantPres-=1;
-                System.out.println("Libro devuelto con exito.");
+            if(cantPres==0)
+                System.out.println("No tiene libros pendientes.");
+            else{
+            cantPres-=1;
+            BookSoft.libPrestados-=1;
+            this.setCant(this.getCant()+1);
+            System.out.println("El libro fue devuelto con exito.");
+            System.out.println("Actualmente tiene "+BookSoft.libPrestados+" libros prestados");
+            }
+            if (cantPres==0) {
+                out=false;
             }
         }
-        
+
+    public void librosPrestados(){
+        if (cantPres==0)
+            System.out.println("Actualmente no tiene libros prestados");
+        if (out==true){
+            //System.out.println("Nombre del libro: "+getNombre());
+            buscarLibro();
+                    
+        }
     }
 }

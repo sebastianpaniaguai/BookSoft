@@ -2,8 +2,8 @@ package booksoft;
 import java.util.Scanner;
 public class Libro {
     
-    private String nombre,autor,pubYear,codigo,area;
-    private int cant; boolean flag;
+    private String nombre,autor,pubYear,area;
+    private int cant,codigo; boolean flag;
     public Scanner teclado=new Scanner(System.in);
     public String getNombre() {
         return nombre;
@@ -23,10 +23,10 @@ public class Libro {
     public void setPubYear(String pubYear) {
         this.pubYear = pubYear;
     }
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
     public int getCant() {
@@ -47,7 +47,7 @@ public class Libro {
     public void setFlag(boolean flag) {
         this.flag = flag;
     }
-    
+
     public void ingresarLibro(){
         System.out.println("Accediendo al sistema...");
         System.out.println("Ingrese el nombre del libro: ");
@@ -58,8 +58,23 @@ public class Libro {
         pubYear=teclado.next();
         System.out.println("Ingrese la cantidad de libros disponibles: ");
         cant=teclado.nextInt();
-        System.out.println("Ingrese el area de estudio de la publicacion: ");
-        area=teclado.next();
+        System.out.println("Ingrese el area de estudio de la publicacion: \n1.Quimica\n2.Fisica\n3.Tecnologia\n4.Calculo\n5.Programacion");
+        int op=teclado.nextInt();
+        do{
+        switch(op){
+            case 1: area="Quimica";
+                break;
+            case 2: area="Fisica";
+                break;
+            case 3: area="Tecnologia";
+                break;
+            case 4: area="Calculo";
+                break;
+            case 5: area="Programacion";
+                break;    
+            default: System.out.println("No es una opcion valida por ahora.");
+                break;
+        }}while(op<1 || op>5);
         System.out.println("Informacion actualizada con exito.");
         flag=true;
         System.out.println("La publicacion ha sido almacenada con el codigo: "+codigo);
@@ -118,10 +133,28 @@ public class Libro {
                     System.out.println("Actualmente el area de estudio es: "+area);
                     System.out.println("Esta seguro que desea modificar?[y/n]");
                     if(teclado.next().compareTo("y")==0){
-                        System.out.println("Ingrese el area a la que pertenece el libro: ");
-                        area=teclado.next();
+                        System.out.println("Ingrese el area de estudio de la publicacion: \n1.Quimica\n2.Fisica\n3.Tecnologia\n4.Calculo\n5.Programacion");
+                            op=teclado.nextInt();
+                            do{
+                            switch(op){
+                                case 1: area="Quimica";
+                                    break;
+                                case 2: area="Fisica";
+                                    break;
+                                case 3: area="Tecnologia";
+                                    break;
+                                case 4: area="Calculo";
+                                    break;
+                                case 5: area="Programacion";
+                                    break;    
+                                default: System.out.println("No es una opcion valida por ahora.");
+                                    break;
+                            }}while(op<1 || op>5);
                     }
                     else break;
+                    break;
+                default:
+                    System.out.println("No es una opcion valida");
                     break;
             }
         } while (op!=0);
@@ -137,18 +170,13 @@ public class Libro {
             }
             else System.out.println("Regresando al menu...");
     }
-    public Libro buscarLibro(String libro){
-        if (nombre.compareTo(libro)==0){
-            System.out.println("Mostrando coincidencias...");
-            System.out.println(nombre);
-            System.out.println(codigo);
-            System.out.println(autor);
-            System.out.println(pubYear);
-            System.out.println(cant);
-            return this;
-        }
-        else
-            System.out.println("El libro no esta en la coleccion");
-        return null;
+    public void buscarLibro(){
+        System.out.println("Nombre del libro: "+nombre);
+        System.out.println("Nombre del autor: "+autor);
+        System.out.println("Año de publicacion: "+pubYear);
+        System.out.println("Ediciones disponibles: "+cant);
+        System.out.println("Codigo: "+codigo);
+        System.out.println("Area de relacion: "+area);
+        
     }
 }
