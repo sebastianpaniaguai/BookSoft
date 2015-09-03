@@ -59,8 +59,9 @@ public class Libro {
         System.out.println("Ingrese la cantidad de libros disponibles: ");
         cant=teclado.nextInt();
         System.out.println("Ingrese el area de estudio de la publicacion: \n1.Quimica\n2.Fisica\n3.Tecnologia\n4.Calculo\n5.Programacion");
-        int op=teclado.nextInt();
+        int op;
         do{
+        op=teclado.nextInt();
         switch(op){
             case 1: area="Quimica";
                 break;
@@ -72,7 +73,7 @@ public class Libro {
                 break;
             case 5: area="Programacion";
                 break;    
-            default: System.out.println("No es una opcion valida por ahora.");
+            default: System.out.println("No es una opcion valida por ahora. Ingrese otra: ");
                 break;
         }}while(op<1 || op>5);
         System.out.println("Informacion actualizada con exito.");
@@ -134,8 +135,8 @@ public class Libro {
                     System.out.println("Esta seguro que desea modificar?[y/n]");
                     if(teclado.next().compareTo("y")==0){
                         System.out.println("Ingrese el area de estudio de la publicacion: \n1.Quimica\n2.Fisica\n3.Tecnologia\n4.Calculo\n5.Programacion");
-                            op=teclado.nextInt();
                             do{
+                                op=teclado.nextInt();
                             switch(op){
                                 case 1: area="Quimica";
                                     break;
@@ -147,7 +148,7 @@ public class Libro {
                                     break;
                                 case 5: area="Programacion";
                                     break;    
-                                default: System.out.println("No es una opcion valida por ahora.");
+                                default: System.out.println("No es una opcion valida por ahora. Ingrese otra: ");
                                     break;
                             }}while(op<1 || op>5);
                     }
@@ -158,6 +159,7 @@ public class Libro {
                     break;
             }
         } while (op!=0);
+        System.out.println("Operacion realizada con exito. ");
     }
     public void eliminarLibro(){
         System.out.println("Esta seguro que desea eliminar este libro?[y/n]");
